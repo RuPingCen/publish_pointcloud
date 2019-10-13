@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+ 
+  <node name="publish_pointcloud" pkg="publish_pointcloud" type="publish_pointcloud">
+	<param name="path" value="$(find publish_pointcloud)/data/test.pcd" type="str" />
+	<param name="frame_id" value="camera" type="str" />
+	<param name="topic" value="/pointcloud/output" type="str" />
+	<param name="hz" value="2" type="int" />
+  </node>
+
+  <!-- Load ocotmap launch -->
+  <include file="$(find publish_pointcloud)/launch/octomaptransform.launch" />
+
+  <!-- RViz -->
+  <node pkg="rviz" type="rviz" name="$(anon rviz)" respawn="false" output="screen" args="-d $(find publish_pointcloud)/rviz/OctomapShow.rviz"/>
+
+</launch>
+
+ 
+
+		
+ 
